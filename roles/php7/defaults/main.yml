@@ -1,2 +1,16 @@
 ---
-# defaults file for php7
+# Composer Defaults
+composer_path: /usr/local/bin/composer
+composer_version: ''
+
+# PHP-FPM Configuration
+php_fpm_pool_user: caddy
+php_fpm_pool_group: caddy
+php_fpm_pool_conf_path: "/etc/php-fpm.d/www.conf"
+
+php_fpm_listen: "127.0.0.1:9000"
+php_fpm_listen_allowed_clients: "127.0.0.1"
+php_fpm_pm_max_children: 50
+php_fpm_pm_start_servers: 5
+php_fpm_pm_min_spare_servers: 5
+php_fpm_pm_max_spare_servers: 5

@@ -1,14 +1,12 @@
 ---
-sudo: required
-group: deprecated-2017Q4
+services:
+  - docker
 
 env:
   - distro: centos7
+    playbook: test.yml
     init: /usr/lib/systemd/systemd
     run_opt: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-services:
-  - docker
 
 before_install:
   - 'sudo docker pull geerlingguy/docker-${distro}-ansible:latest'

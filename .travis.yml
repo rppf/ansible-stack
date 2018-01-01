@@ -1,23 +1,26 @@
 ---
+sudo: required
+
+env:
+  - distribution: centos
+    version: 7
+
+
 services:
   - docker
 
-env:
-  - distro: centos7
-    playbook: test.yml
-    init: /usr/lib/systemd/systemd
-    run_opt: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
-  - 'sudo docker pull geerlingguy/docker-${distro}-ansible:latest'
+  - 'sudo docker pull ${distribution}:${version}'
+  - 'sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis'
 
 script:
   - container_id=$(mktemp)
-  - 'sudo docker run --detach --volume="${PWD}":/rppf/ansible-stack/roles/php7:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
+  - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/rppf/ansible-stack/roles/php7:ro ${distribution}-${version}:ansible > "${container_id}"'
   # Syntax Check
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook -i tests/inventory tests/test.yml --syntax-check'
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /rppf/ansible-stack/tests/test.yml --syntax-check'
   # Test role
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook -i tests/inventory tests/test.yml'
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /rppf/ansible-stack/tests/test.yml'
 
 after_sucess:
   - 'sudo docker stop "$(cat ${container_id})"'

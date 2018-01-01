@@ -2,8 +2,7 @@
 sudo: required
 
 env:
-  - distribution: centos
-    version: 7
+  - distribution: centos7
 
 
 services:
@@ -11,7 +10,7 @@ services:
 
 
 before_install:
-  - 'sudo docker pull ${distribution}:${version}'
+  - 'sudo docker pull geerlingguy/docker-${distro}-ansible:latest'
 
 script:
   - container_id=$(mktemp)

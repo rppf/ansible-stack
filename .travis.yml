@@ -15,9 +15,9 @@ script:
   - container_id=$(mktemp)
   - 'sudo docker run --detach --volume="${PWD}":/rppf/ansible-stack/roles/php7:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
   # Syntax Check
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /rppf/ansible-stack/tests/test.yml --syntax-check'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook -i tests/inventory tests/test.yml --syntax-check'
   # Test role
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /rppf/ansible-stack/tests/test.yml'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook -i tests/inventory tests/test.yml'
 
 after_sucess:
   - 'sudo docker stop "$(cat ${container_id})"'

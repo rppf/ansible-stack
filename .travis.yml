@@ -1,6 +1,4 @@
 ---
-sudo: required
-
 language: python
 python: "2.7"
 
@@ -13,6 +11,6 @@ install:
 
 script:
   # Check the role/playbook's syntax.
-  - ansible-playbook -i tests/inventory tests/yml --syntax check
+  - ansible-playbook tests/test.yml --syntax check
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i tests/inventory tests/test.yml
+  - ansible-playbook tests/test.yml

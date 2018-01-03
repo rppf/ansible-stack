@@ -7,7 +7,7 @@
 
 - name: Download Nodejs
   get_url:
-    url: https://rpm.nodesource.com/setup_8.x
+    url: https://deb.nodesource.com/setup_8.x
     dest: /tmp
 
 - name: Setup Nodejs

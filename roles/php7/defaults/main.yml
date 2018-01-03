@@ -4,8 +4,8 @@ composer_path: /usr/local/bin/composer
 composer_version: ''
 
 # PHP-FPM Configuration
-php_fpm_pool_user: caddy
-php_fpm_pool_group: caddy
+php_fpm_pool_user: www-data
+php_fpm_pool_group: www-data
 php_fpm_pool_conf_path: "/etc/php-fpm.d/www.conf"
 
 php_fpm_listen: "127.0.0.1:9000"

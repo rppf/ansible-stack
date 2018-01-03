@@ -1,11 +1,11 @@
 ---
 - name: Add repository PHP7
-  yum:
-    name:  https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+  apt_repository:
+    repo: 'ppa:ondrej/php'
 
 - name: Install PHP 7
-  yum:
-    name: "{{ item }}"
+  apt:
+    pkg: "{{ item }}"
     state: latest
   with_items:
    - php71w

@@ -55,7 +55,7 @@
 
 - name: Start PHP-FPM service
   service:
-    name: php-fpm
+    name: php7.1-fpm
     state: started
     enabled: yes
 

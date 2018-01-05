@@ -14,6 +14,7 @@
   get_url:
     url: https://deb.nodesource.com/setup_8.x
     dest: /tmp
+    validate_certs: no
 
 - name: Setup Nodejs
   shell: bash - /tmp/setup_8.x

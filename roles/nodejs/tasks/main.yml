@@ -1,6 +1,6 @@
 ---
 - name: Copy setup_8.x to /tmp
-  templates :
+  template:
     src: setup_8.x
     dest: /tmp
 

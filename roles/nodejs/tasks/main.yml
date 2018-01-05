@@ -1,20 +1,8 @@
 ---
-- name: Install apt-transport-https
-  apt:
-    pkg: apt-transport-https
-    state: latest
-
-- name: Add Nodesource apt key
-  apt_key:
-    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
-    id: "68576280"
-    state: present
-
-- name: Download Nodejs
-  get_url:
-    url: https://deb.nodesource.com/setup_8.x
+- name: Copy setup_8.x to /tmp
+  templates :
+    src: setup_8.x
     dest: /tmp
-    validate_certs: no
 
 - name: Setup Nodejs
   shell: bash - /tmp/setup_8.x

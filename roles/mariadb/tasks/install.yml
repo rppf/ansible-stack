@@ -1,13 +1,13 @@
 ---
 - name: Add MariaDB key
   apt_key:
-    keyserver: keyserver.ubuntu.com:80
+    keyserver: hkp://keyserver.ubuntu.com:80
     id: 0xcbcb082a1bb943db
 
 - name: Add MariaDB repo to apt repo path
   template:
-    - src: MariaDB.list
-    - dest: /etc/apt/sources.list.d
+    src: MariaDB.list
+    dest: /etc/apt/sources.list.d
 
 - name: Install MariaDB
   apt:

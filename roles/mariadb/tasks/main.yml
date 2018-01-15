@@ -1,0 +1,15 @@
+---
+- include: install.yml
+
+- name: Ensure service is started
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+  tags: mariadb
+
+- include: config.yml
+
+- include: set-root-password.yml
+
+- include: users.yml

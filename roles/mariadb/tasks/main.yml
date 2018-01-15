@@ -1,5 +1,5 @@
 ---
-- include: install.yml
+- include_tasks: install.yml
 
 - name: Ensure service is started
   service:
@@ -8,8 +8,8 @@
     enabled: yes
   tags: mariadb
 
-- include: config.yml
+- include_tasks: config.yml
 
-- include: set-root-password.yml
+- include_tasks: set-root-password.yml
 
-- include: users.yml
+- include_tasks: users.yml

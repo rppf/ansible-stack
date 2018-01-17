@@ -9,6 +9,10 @@
     src: MariaDB.list
     dest: /etc/apt/sources.list.d
 
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
 - name: Install MariaDB
   apt:
     pkg: "{{ item }}"

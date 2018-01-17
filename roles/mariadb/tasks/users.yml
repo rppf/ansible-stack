@@ -6,7 +6,6 @@
     login_user: root
     login_password: "{{ mariadb_root_password }}"
     state: absent
-  tags: mysql
 
 - name: Create the users
   mysql_user:
@@ -17,4 +16,3 @@
     login_user: root
     login_password: "{{ mariadb_root_password }}"
     state: present
-  tags: mysql

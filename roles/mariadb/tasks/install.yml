@@ -3,6 +3,7 @@
   apt_key:
     url: http://keyserver.ubuntu.com/pks/lookup?op=index&search=0xcbcb082a1bb943db
     id: 1BB943DB
+    state: present
 
 - name: Add MariaDB repo to apt repo path
   template:

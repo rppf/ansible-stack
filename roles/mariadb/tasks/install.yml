@@ -16,4 +16,4 @@
   with_items:
     - mariadb-server
     - mariadb-client
-    - MySQL-python
+    - mysqldb

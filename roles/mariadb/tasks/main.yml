@@ -3,7 +3,7 @@
 
 - name: Ensure service is started
   service:
-    name: mariadb
+    name: mysql
     state: started
     enabled: yes
   tags: mariadb

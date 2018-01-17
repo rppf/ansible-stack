@@ -3,12 +3,12 @@
   template:
     src: etc_my.cnf.d_server.cnf.j2
     dest: "{{ mariadb_config_server }}"
-  notify: restart mariadb
-  tags: mariadb
+  notify: restart mysql
+  tags: mysql
 
 - name: Install network config file
   template:
     src: etc_my.cnf.d_network.cnf.j2
     dest: "{{ mariadb_config_network }}"
-  notify: restart mariadb
-  tags: mariadb
+  notify: restart mysql
+  tags: mysql

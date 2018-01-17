@@ -5,7 +5,7 @@
     login_user: root
     login_password: "{{ mariadb_root_password }}"
     state: absent
-  tags: mariadb
+  tags: mysql
 
 - name: Create user defined databases
   mysql_db:
@@ -15,4 +15,4 @@
     state: present
   with_items: "{{ mariadb_databases }}"
   register: db_creation
-  tags: mariadb
+  tags: mysql

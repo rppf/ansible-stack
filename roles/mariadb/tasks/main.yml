@@ -8,8 +8,8 @@
     enabled: yes
   tags: mariadb
 
-- include_tasks: config.yml
-
 - include_tasks: set-root-password.yml
+
+- include_tasks: create-db.yml
 
 - include_tasks: users.yml

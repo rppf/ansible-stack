@@ -1,6 +1,9 @@
 ---
 - name: Download Caddy
-  command: curl {{ caddy_download_url }} --output /tmp/caddy.tar.gz
+  uri:
+    url: "{{ caddy_download_url }}"
+    creates: caddy.tar.gz
+    dest: /tmp
 
 - name: Extract Caddy
   unarchive:
@@ -38,6 +41,7 @@
 - name: Create a directory for your web files
   file:
     path: "{{ www_dir }}"
+    state: directory
     owner: www-data
     group: www-data
     mode: 0555

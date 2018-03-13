@@ -2,8 +2,8 @@
 - name: Download Caddy
   uri:
     url: "{{ caddy_download_url }}"
-    creates: caddy.tar.gz
     dest: /tmp
+    creates: caddy.tar.gz
 
 - name: Extract Caddy
   unarchive:
@@ -62,12 +62,8 @@
     group: root
     mode: 0644
 
-- name: Enable caddy service
-  service:
-    name: caddy
-    enabled: yes
-
-- name: Start caddy service
+- name: Start and enable caddy service
   service:
     name: caddy
     state: started
+    enabled: yes

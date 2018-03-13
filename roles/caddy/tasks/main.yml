@@ -1,0 +1,45 @@
+---
+- name: Download Caddy
+  command: curl {{ caddy_download_url }} --output tmp/caddy.tar.gz
+
+- name: Extract Caddy
+  unarchive:
+    src: /tmp/caddy.tar.gz
+    dest: /tmp
+
+- name: Copy caddy binary to /usr/local/bin
+  copy:
+    src: /tmp/caddy
+    dest: "{{ caddy_bin_dir }}"
+    owner: www-data
+    mode: 0775
+
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: www-data
+  with_items:
+    - "{{ caddy_conf_dir }}"
+    - "{{ caddy_certs_dir }}"
+    - "{{ www_dir }}"
+
+- name: Create Caddyfile
+  copy:
+    content: "{{ caddy_conf_file}}"
+    dest: "{{ caddy_conf_dir }}"
+    owner: www-data
+
+- name: Copy caddy init script to /etc/init.d
+  copy:
+    src: /tmp/init/linux-sysvinit/caddy
+    dest: /etc/init.d
+
+- name: Enable caddy service
+  service:
+    name: caddy
+    enabled: yes
+
+- name: Start caddy service
+  service: caddy
+  state: started

@@ -13,4 +13,5 @@
   roles:
    #- php7
    #- nodejs
-   - mariadb
+   #- mariadb
+    - caddy

@@ -41,5 +41,6 @@
     enabled: yes
 
 - name: Start caddy service
-  service: caddy
-  state: started
+  service:
+    name: caddy
+    state: started

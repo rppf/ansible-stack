@@ -62,6 +62,7 @@
 - name: Reload the systemd to make sure systemd has read any changes
   systemd:
     daemon_reload: yes
+    name: caddy
 
 - name: Start and enable caddy service
   service:

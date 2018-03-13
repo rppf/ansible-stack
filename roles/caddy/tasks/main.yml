@@ -10,30 +10,53 @@
 - name: Copy caddy binary to /usr/local/bin
   copy:
     src: /tmp/caddy
-    dest: "{{ caddy_bin_dir }}"
-    owner: www-data
+    dest: "{{ caddy_bin_dir }}/caddy"
+    owner: root
+    group: root
     mode: 0775
 
-- name: Create directories
+- name: Give the caddy binary the ability to bind to privileged ports
+  command: setcap 'cap_net_bind_service=+ep' {{ caddy_bin_dir/caddy }}
+
+- name: Create a directory for Caddyfile
   file:
-    path: "{{ item }}"
+    path: "{{ caddy_conf_dir }}"
+    state: directory
+    owner: root
+    group: www-data
+    recurse: yes
+
+- name: Create a directory for the storage of SSL certs
+  file:
+    path: "{{ caddy_certs_dir }}"
     state: directory
     owner: www-data
-  with_items:
-    - "{{ caddy_conf_dir }}"
-    - "{{ caddy_certs_dir }}"
-    - "{{ www_dir }}"
+    group: root
+    recurse: yes
+    mode: 0770
+
+- name: Create a directory for your web files
+  file:
+    path: "{{ www_dir }}"
+    owner: www-data
+    group: www-data
+    mode: 0555
 
 - name: Create Caddyfile
   copy:
     content: "{{ caddy_conf_file}}"
-    dest: "{{ caddy_conf_dir }}"
+    dest: "{{ caddy_conf_dir }}/Caddyfile"
     owner: www-data
+    group: www-data
+    mode: 0444
 
-- name: Copy caddy init script to /etc/init.d
+- name: Copy caddy init script to /etc/systemd/system
   copy:
-    src: /tmp/init/linux-sysvinit/caddy
-    dest: /etc/init.d
+    src: /tmp/init/linux-systemd/caddy.service
+    dest: /etc/systemd/system/caddy.service
+    owner: root
+    group: root
+    mode: 0644
 
 - name: Enable caddy service
   service:

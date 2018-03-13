@@ -60,9 +60,7 @@
     mode: 0644
 
 - name: Reload the systemd to make sure systemd has read any changes
-  systemd:
-    name: caddy
-    daemon_reload: yes
+  systemd: daemon_reload=yes
 
 - name: Start and enable caddy service
   service:

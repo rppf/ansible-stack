@@ -59,9 +59,12 @@
     group: root
     mode: 0644
 
+- name: Reload the systemd to make sure systemd has read any changes
+  systemd:
+    daemon_reload: yes
+
 - name: Start and enable caddy service
   service:
     name: caddy
     state: started
-    daemon_reload: yes
     enabled: yes

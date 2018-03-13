@@ -59,9 +59,6 @@
     group: root
     mode: 0644
 
-- name: Reload the systemd to make sure systemd has read any changes
-  command: systemctl daemon-reload
-
 - name: Start and enable caddy service
   service:
     name: caddy

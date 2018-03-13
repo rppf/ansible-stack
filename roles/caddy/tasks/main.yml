@@ -1,9 +1,6 @@
 ---
 - name: Download Caddy
-  uri:
-    url: "{{ caddy_download_url }}"
-    dest: /tmp
-    creates: caddy.tar.gz
+  command: curl {{ caddy_download_url }} --output /tmp/caddy.tar.gz
 
 - name: Extract Caddy
   unarchive:

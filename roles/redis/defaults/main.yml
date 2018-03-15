@@ -1,0 +1,4 @@
+---
+redis_version: 4.0.8
+supervise_init: systemd
+working_redis_dir: /var/lib/redis

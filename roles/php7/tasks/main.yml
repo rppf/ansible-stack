@@ -53,7 +53,7 @@
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
   notify: restart php-fpm
 
-- name: Start PHP-FPM service
+- name: Start and enable PHP-FPM service
   service:
     name: php7.1-fpm
     state: started

@@ -59,7 +59,12 @@
     group: root
     mode: 0644
 
-- name: Check if systemd is running
-  stat: path=/run/systemd/system
-  fail:
-    msg: "systemd doens't running"
+- name: Reload systemd
+  service:
+    daemon_reload: yes
+
+- name: Start and enable caddy service
+  service:
+    name: caddy
+    state: started
+    enabled: yes

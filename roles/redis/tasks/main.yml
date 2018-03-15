@@ -1,0 +1,54 @@
+---
+- name: Create a group for redis user
+  group:
+    name: redis
+
+- name: Create a user for redis and assign it to redis group
+  user:
+    name: redis
+    createhome: no
+    group: redis
+
+- name: Download stable release of redis
+  get_url:
+    url: "http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz"
+    dest: /tmp
+
+- name: Extract redis
+  unarchive:
+    src: "/tmp/{{ redis_version }}.tar.gz"
+    dest: /tmp
+
+- name: Compile redis binaries
+  make:
+    chdir: "/tmp/{{ redis_version }}"
+
+- name: Test redis binaries
+  make:
+    chdir: "/tmp/{{ redis_version }}"
+    target: test
+
+- name: Install redis binaries
+  make:
+    chdir: "/tmp/{{ redis_version }}"
+    target: install
+
+- name: Create a directory for the redis configuration file
+  file:
+    path: /etc/redis
+    state: directory
+
+- name: Copy redis.conf to /etc/redis
+  template:
+    src: redis.conf.j2
+    dest: /etc/redis
+
+- name: Copy redis.service to /etc/systemd/system
+  template: redis.service
+  dest: /etc/systemd/system
+
+- name: Start and enable redis
+  service:
+    name: redis
+    state: started
+    enabled: yes

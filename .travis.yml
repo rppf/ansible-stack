@@ -4,6 +4,7 @@ sudo: required
 env:
   - distro: ubuntu1604
     init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
   - docker pull geerlingguy/docker-${distro}-ansible:latest

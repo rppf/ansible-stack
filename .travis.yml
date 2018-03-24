@@ -10,7 +10,7 @@ script:
   - export cleanup=false
 
   # Download test shim.
-  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/rppf/b5be9c01d8f3c29996979d07fdfe771c/raw/
+  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/rppf/b5be9c01d8f3c29996979d07fdfe771c/raw
   - chmod +x ${PWD}/tests/test.sh
 
   # Run tests.

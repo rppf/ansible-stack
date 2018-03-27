@@ -19,10 +19,9 @@
     src: "/tmp/redis-{{ redis_version }}.tar.gz"
     dest: /tmp
 
-- name: Upgrade all packages to the latest version
+- name: Update all packages to the latest version
   apt:
-    name: "*"
-    state: latest
+    upgrade: dist
 
 - name: Download build-essential
   apt:

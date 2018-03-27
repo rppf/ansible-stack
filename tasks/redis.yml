@@ -19,10 +19,18 @@
     src: "/tmp/redis-{{ redis_version }}.tar.gz"
     dest: /tmp
 
-- name: Download build-essentials
+- name: Upgrade all packages to the latest version
   apt:
-    name: build-essential
+    name: "*"
+    state: latest
+
+- name: Download build-essential
+  apt:
+    name: "{{ item }}"
     state: present
+  with_items:
+    - build-essential
+    - tcl
 
 - name: Compile redis binaries
   make:

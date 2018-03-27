@@ -16,21 +16,21 @@
 
 - name: Extract redis
   unarchive:
-    src: "/tmp/{{ redis_version }}.tar.gz"
+    src: "/tmp/redis-{{ redis_version }}.tar.gz"
     dest: /tmp
 
 - name: Compile redis binaries
   make:
-    chdir: "/tmp/{{ redis_version }}"
+    chdir: "/tmp/redis-{{ redis_version }}"
 
 - name: Test redis binaries
   make:
-    chdir: "/tmp/{{ redis_version }}"
+    chdir: "/tmp/redis-{{ redis_version }}"
     target: test
 
 - name: Install redis binaries
   make:
-    chdir: "/tmp/{{ redis_version }}"
+    chdir: "/tmp/redis-{{ redis_version }}"
     target: install
 
 - name: Create a directory for the redis configuration file

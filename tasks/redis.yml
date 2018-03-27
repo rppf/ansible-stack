@@ -19,6 +19,11 @@
     src: "/tmp/redis-{{ redis_version }}.tar.gz"
     dest: /tmp
 
+- name: Download build-essentials
+  apt:
+    name: build-essential
+    state: present
+
 - name: Compile redis binaries
   make:
     chdir: "/tmp/redis-{{ redis_version }}"

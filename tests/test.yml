@@ -11,7 +11,4 @@
    # Password of your custome user.
    - database_password: "foo_custom_user_pasword"
   roles:
-   #- php7
-   #- nodejs
-   #- mariadb
-    - caddy
+    - roles_under_test

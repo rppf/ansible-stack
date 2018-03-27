@@ -1,0 +1,95 @@
+---
+#
+# ─── INSTALL MARIADB ────────────────────────────────────────────────────────────
+#
+- name: Add MariaDB key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 1BB943DB
+
+- name: Add MariaDB repo to apt repo path
+  template:
+    src: MariaDB.list
+    dest: /etc/apt/sources.list.d
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install MariaDB
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - mariadb-server
+    - mariadb-client
+    - python-mysqldb
+
+# ────────────────────────────────────────────────────────────────────────────────
+- name: Ensure service is started
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  tags: mariadb
+# ────────────────────────────────────────────────────────────────────────────────
+
+#
+# ─── SET DATABASE ROOT PASSWORD ─────────────────────────────────────────────────
+#
+- name: Check if root password is set
+  shell: >
+    mysqladmin -u root status
+  changed_when: false
+  failed_when: false
+  register: root_pwd_check
+
+- name: Set Mariadb root password
+  mysql_user:
+    name: root
+    password: "{{ mariadb_root_password }}"
+    host_all: yes
+    state: present
+  when: root_pwd_check.rc == 0
+
+#
+# ─── CREATE DATABASES ───────────────────────────────────────────────────────────
+#
+- name: Remove the test database
+  mysql_db:
+    name: test
+    login_user: root
+    login_password: "{{ mariadb_root_password }}"
+    state: absent
+
+- name: Create user defined databases
+  mysql_db:
+    name: "{{ item.name }}"
+    login_user: root
+    login_password: "{{ mariadb_root_password }}"
+    encoding: utf8mb4
+    collation: utf8mb4_unicode_ci
+    state: present
+  with_items: "{{ mariadb_databases }}"
+  register: db_creation
+
+#
+# ─── CREATE DATABASE USERS ──────────────────────────────────────────────────────
+#
+- name: Remove anonymous users
+  mysql_user:
+    name: ''
+    host_all: yes
+    login_user: root
+    login_password: "{{ mariadb_root_password }}"
+    state: absent
+
+- name: Create the users
+  mysql_user:
+    name: '{{ database_user }}'
+    password: '{{ database_password }}'
+    host: localhost
+    priv: '{{ database_name }}.*:ALL'
+    login_user: root
+    login_password: "{{ mariadb_root_password }}"
+    state: present

@@ -1,4 +1,9 @@
 ---
+- name: restart php-fpm
+  service:
+    name: php7.1-fpm
+    state: restarted
+
 - name: restart mysql
   service:
     name: mysql

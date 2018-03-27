@@ -1,5 +1,0 @@
----
-# Your DB's Configurations
-mariadb_root_password: '{{ db_root_password }}'
-mariadb_databases:
-  - name: '{{ database_name }}'

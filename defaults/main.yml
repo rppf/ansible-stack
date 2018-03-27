@@ -1,0 +1,47 @@
+---
+#
+# ─── COMPOSER CONFIGURATIONS ────────────────────────────────────────────────────
+#
+composer_path: /usr/local/bin/composer
+composer_version: ''
+
+#
+# ─── PHP-FPM CONFIGURATIONS ─────────────────────────────────────────────────────
+#
+php_fpm_pool_user: www-data
+php_fpm_pool_group: www-data
+php_fpm_pool_conf_path: "/etc/php-fpm.d/www.conf"
+
+php_fpm_listen: "127.0.0.1:9000"
+php_fpm_listen_allowed_clients: "127.0.0.1"
+php_fpm_pm_max_children: 50
+php_fpm_pm_start_servers: 5
+php_fpm_pm_min_spare_servers: 5
+php_fpm_pm_max_spare_servers: 5
+
+#
+# ─── MARIADB'S CONFIGURATIONS ───────────────────────────────────────────────────
+#
+mariadb_root_password: "{{ db_root_password }}"
+mariadb_databases:
+  - name: "{{ database_name }}"
+
+#
+# ─── CADDY'S CONFIGURATIONS ─────────────────────────────────────────────────────
+#
+caddy_bin_dir: /usr/local/bin
+caddy_conf_dir: /etc/caddy
+caddy_certs_dir: /etc/ssl/caddy
+www_dir: /var/www
+caddy_download_url: https://caddyserver.com/download/linux/amd64?license=personal
+caddy_conf_file: |
+  localhost:8080
+  gzip
+  tls off
+
+#
+# ─── REDIS' CONFIGURATIONS ──────────────────────────────────────────────────────
+#
+redis_version: 4.0.8
+supervise_init: systemd
+working_redis_dir: /var/lib/redis

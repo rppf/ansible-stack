@@ -44,8 +44,9 @@
     dest: /etc/redis
 
 - name: Copy redis.service to /etc/systemd/system
-  template: redis.service
-  dest: /etc/systemd/system
+  template:
+    src: redis.service
+    dest: /etc/systemd/system
 
 - name: Start and enable redis
   service:

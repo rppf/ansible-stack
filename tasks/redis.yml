@@ -24,6 +24,7 @@
     upgrade: dist
 
 - name: Download build-essential
+  become: yes
   apt:
     name: "{{ item }}"
     state: present

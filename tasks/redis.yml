@@ -19,10 +19,13 @@
     src: "/tmp/redis-{{ redis_version }}.tar.gz"
     dest: /tmp
 
-- name: Update repositories cache and install build-essential package
+- name: Update repositories cache and install build-essential & tcl package
   apt:
-    name: build-essential
+    name: "{{ item }}"
     update_cache: yes
+  with_items:
+    - build-essential
+    - tcl
 
 - name: Compile redis binaries
   make:

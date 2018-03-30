@@ -7,12 +7,12 @@
 #
 # ─── DOWNLOAD & INSTALL NODEJS ──────────────────────────────────────────────────
 #
-- include_tasks: nodejs.yml
+#- include_tasks: nodejs.yml
 
 #
 # ─── DOWNLOAD & INSTALL MARIADB ─────────────────────────────────────────────────
 #
-#- include_tasks: mariadb.yml
+- include_tasks: mariadb.yml
 
 #
 # ─── DOWNLOAD & INSTALL CADDY ───────────────────────────────────────────────────

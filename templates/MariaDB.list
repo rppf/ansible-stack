@@ -1,4 +1,0 @@
-# MariaDB 10.2 repository list - created 2018-01-16 17:07 UTC
-# http://downloads.mariadb.org/mariadb/repositories/
-deb [arch=amd64,i386] http://ftp.kaist.ac.kr/mariadb/repo/10.2/ubuntu trusty main
-deb-src http://ftp.kaist.ac.kr/mariadb/repo/10.2/ubuntu trusty main

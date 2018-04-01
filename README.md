@@ -26,11 +26,11 @@ ssh-copy-id root@localhost
 3. Git clone this repo.
 
 4. Then inside the Weaver directory, create a playbook, inventory file, and an ansible configuration file.
-	- Name your playbook file **`playbook.yml`** or anything you want
+	- Name your playbook file **`playbook.yml`** or anything you want.
 [Copy this into your playbook file](https://gist.github.com/rppf/86cb22d52b65add74f6b0a89162d2777 "Copy this into your playbook file")
-	- Name your inventory file **`hosts`** or **`inventory`**
+	- Name your inventory file **`hosts`** or **`inventory`**.
 [Copy this into your inventory file](https://gist.github.com/rppf/d82467a7dd36b784a945786d22cb10ab "Copy this into your inventory file")
-	- Add a file named **`ansible.cfg`**
+	- Add a file named **`ansible.cfg`**.
 [Copy this into your ansible.cfg](https://gist.github.com/rppf/1a33bb5d6baa381a18ac92831270bc3e "Copy this into your ansible.cfg")
 5. Then run this command inside the directory of Weaver
 ```shell

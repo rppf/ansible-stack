@@ -1,26 +1,47 @@
 # Weaver
-
 [![Travis](https://img.shields.io/travis/rppf/weaver.svg?style=flat-square)](https://travis-ci.org/rppf/weaver)
-=========
 
-A collection of ansible roles (PHP 7, Composer, Nodejs, Yarn, Redis, and Caddy) that will install these software into your server.
+This role will install the following packages:
+- PHP 7.1
+- NodeJS 8.x (including npm and yarn)
+- MariaDB 10.2
+- Caddy
+- Redis 4.0.8
 
-## Requirements
-------------
+This is role is successfully tested on Ubuntu 16.04.
 
-TODO
+## How to use
+Before executing Weaver, you must first check the default values of Weaver located in ** `defaults/main.yml`**. You can change the values if you want.
 
-## Role Variables
---------------
+Now follow these steps:
+1. Create a SSH Key by running this command.
+```shell
+ssh-keygen
+```
 
-TODO
+2. Then copy the ssh key. **`ssh-copy-id user@hostname`**. For this example I will be using user **root** and a hostname **localhost**.
+```shell
+ssh-copy-id root@localhost
+```
+3. Git clone this repo.
 
-## Dependencies
-------------
+4. Then inside the Weaver directory, create a playbook, inventory file, and an ansible configuration file.
+	- Name your playbook file **`playbook.yml`** or anything you want
+[Copy this into your playbook file](https://gist.github.com/rppf/86cb22d52b65add74f6b0a89162d2777 "Copy this into your playbook file")
+	- Name your inventory file **`hosts`** or **`inventory`**
+[Copy this into your inventory file](https://gist.github.com/rppf/d82467a7dd36b784a945786d22cb10ab "Copy this into your inventory file")
+	- Add a file named **`ansible.cfg`**
+[Copy this into your ansible.cfg](https://gist.github.com/rppf/1a33bb5d6baa381a18ac92831270bc3e "Copy this into your ansible.cfg")
+5. Then run this command inside the directory of Weaver
+```shell
+$ ansible-playbook -K playbook.yml
+```
 
-TODO
+## License
+MIT
 
-## Example Playbook
-----------------
+## Notes
+If you are new to Ansible. [Read their docs](https://docs.ansible.com/ansible/2.5/index.html "Read their docs").
+If your looking for tutorials about Ansible. Check this [youtube channel](https://www.youtube.com/watch?v=icR-df2Olm8&list=PLFiccIuLB0OiWh7cbryhCaGPoqjQ62NpU "youtube channel").
 
-TODO
+I hope I make myself clear.

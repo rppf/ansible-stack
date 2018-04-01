@@ -11,7 +11,7 @@ This role will install the following packages:
 This is role is successfully tested on Ubuntu 16.04.
 
 ## How to use
-Before executing Weaver, you must first check the default values of Weaver located in ** `defaults/main.yml`**. You can change the values if you want.
+Before executing Weaver, you must first check the default values of Weaver located in **`defaults/main.yml`**. You can change the values if you want.
 
 Now follow these steps:
 1. Create a SSH Key by running this command.

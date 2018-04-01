@@ -1,5 +1,9 @@
 ---
 #
+# ─── DEFAULT CONFIGURATIONS. CHANGE IT IF YOU WANT ──────────────────────────────
+#
+
+#
 # ─── COMPOSER CONFIGURATIONS ────────────────────────────────────────────────────
 #
 composer_path: /usr/local/bin/composer
@@ -20,11 +24,12 @@ php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
 
 #
-# ─── MARIADB'S CONFIGURATIONS ───────────────────────────────────────────────────
+# ─── MARIADB'S CONFIGURATIONS FOR UBUNTU 16.04 ──────────────────────────────────
 #
 mariadb_root_password: "{{ db_root_password }}"
 mariadb_databases:
   - name: "{{ database_name }}"
+
 deb_url: http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/10.2/ubuntu xenial main
 deb_src_url: http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/10.2/ubuntu xenial main
 

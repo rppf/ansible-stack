@@ -1,7 +1,7 @@
 # Weaver
 [![Travis](https://img.shields.io/travis/rppf/weaver.svg?style=flat-square)](https://travis-ci.org/rppf/weaver)
 
-This role will install the following packages:
+This role will install the following:
 - PHP 7.1
 - NodeJS 8.x (including npm and yarn)
 - MariaDB 10.2
@@ -16,7 +16,7 @@ Before executing Weaver, you must first check the default values of Weaver locat
 Now follow these steps:
 1. Create a SSH Key by running this command.
 ```shell
-ssh-keygen
+ssh-keygen -t rsa
 ```
 
 2. Then copy the ssh key. **`ssh-copy-id user@hostname`**. For this example I will be using user **root** and a hostname **localhost**.
@@ -34,8 +34,11 @@ ssh-copy-id root@localhost
 [Copy this into your ansible.cfg](https://gist.github.com/rppf/1a33bb5d6baa381a18ac92831270bc3e "Copy this into your ansible.cfg")
 5. Then run this command inside the directory of Weaver
 ```shell
-$ ansible-playbook -K playbook.yml
+ansible-playbook -K playbook.yml
 ```
+
+You can also choose what to be installed. The main task is located in **`tasks/main.yml`**.Just uncomment **`#`** the task you don't want to be installed.
+![](https://i.imgur.com/MdFQC3X.png)
 
 ## License
 MIT

@@ -1,0 +1,6 @@
+---
+- name: Install Forever using npm
+  npm:
+    name: forever
+    global: yes
+

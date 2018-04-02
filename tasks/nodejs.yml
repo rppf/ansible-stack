@@ -16,3 +16,8 @@
   npm:
     name: yarn
     global: yes
+
+#
+# ─── DOWNLOAD AND INSTALL FOREVER ───────────────────────────────────────────────
+#
+- include_tasks: forever.yml

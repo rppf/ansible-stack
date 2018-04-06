@@ -1,0 +1,14 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: rppf
+  description: An ansible role that will install PHP 7, Composer, Nodejs, Yarn, Redis, and Caddy into your Ubuntu 16.04 server.
+  license: "license (MIT)"
+  min_ansible_version: 2.0
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+  galaxy_tags:
+    - server stack

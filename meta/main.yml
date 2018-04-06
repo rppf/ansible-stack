@@ -11,4 +11,9 @@ galaxy_info:
     versions:
     - xenial
   galaxy_tags:
-    - server stack
+    - web
+    - php
+    - nodejs
+    - caddy
+    - database
+    - development

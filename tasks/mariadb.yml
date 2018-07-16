@@ -20,6 +20,7 @@
   apt:
     pkg: "{{ item }}"
     state: latest
+    allow_unauthenticated: yes
   with_items:
     - mariadb-server
     - mariadb-client

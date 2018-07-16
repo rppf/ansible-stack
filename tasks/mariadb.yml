@@ -10,7 +10,7 @@
 - name: Add MariaDB repo to apt repo path
   template:
     src: MariaDB.list.j2
-    dest: /etc/apt/sources.list.d
+    dest: /etc/apt/sources.list.d/MariaDB.list
 
 - name: Update apt cache
   apt:

@@ -50,7 +50,7 @@ ansible-playbook -K playbook.yml
 If you're going to run Ansible in you local machine. Run this command in your terminal. You can skip steps 1 & 2 in perfoming this command.
 
 ```shell
-ansible-playbook -K playbook.yml
+ansible-playbook playbook.yml --connection=local
 ```
 
 You can also choose what to be installed. The main task is located in **`tasks/main.yml`**.Just uncomment **`#`** the task you don't want to be installed.

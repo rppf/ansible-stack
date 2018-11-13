@@ -18,10 +18,11 @@
 
 - name: Install MariaDB
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ packages }}"
     state: latest
     allow_unauthenticated: yes
-  with_items:
+  vars:
+    packages:
     - mariadb-server
     - mariadb-client
     - python-mysqldb
